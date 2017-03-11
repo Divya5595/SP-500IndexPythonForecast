@@ -16,7 +16,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.svm import SVC
 import operator
-import pandas.io.data
+from pandas_datareader import data
 from sklearn.qda import QDA
 import re
 from dateutil import parser
@@ -63,7 +63,7 @@ def getStock(symbol, start, end):
     """
     downloads stock from yahoo
     """
-    df =  pd.io.data.get_data_yahoo(symbol, start, end)
+    df =  data.get_data_yahoo(symbol, start, end)
 
     df.columns.values[-1] = 'AdjClose'
     df.columns = df.columns + '_' + symbol
@@ -102,10 +102,10 @@ def getStockDataFromWeb(fout, start_string, end_string):
     hkong = getStock('^HSI', start, end)
     nikkei = getStock('^N225', start, end)
     australia = getStock('^AXJO', start, end)
-    
-    djia = getStockFromQuandl("YAHOO/INDEX_DJI", 'Djia', start_string, end_string) 
-    
-    out =  pd.io.data.get_data_yahoo(fout, start, end)
+
+    djia = getStockFromQuandl("YAHOO/INDEX_DJI", 'Djia', start_string, end_string)
+
+    out =  data.get_data_yahoo(fout, start, end)
     out.columns.values[-1] = 'AdjClose'
     out.columns = out.columns + '_Out'
     out['Return_Out'] = out['AdjClose_Out'].pct_change()
