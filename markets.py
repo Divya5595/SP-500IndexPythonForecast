@@ -18,7 +18,8 @@ fout = 'sp500'
 method = 'RF'
 best_model = 'sp500_57.pickle'
 ############ SET PARAMETERS ##################################################
-path_datasets = 'path to datasets'
+path_datasets = './datasets'
+path_output = 'output/log'
 cut = datetime.datetime(1993,1,1)
 start_test = datetime.datetime(2014,4,1)
 parameters = []
@@ -32,7 +33,7 @@ folds = 10
 # AFTER BEST MODEL SELECTION
 bestlags = 9
 bestdelta = 9
-savemodel = False
+savemodel = True
 ##############################################################################
 
 if __name__ == "__main__":
@@ -42,14 +43,14 @@ if __name__ == "__main__":
     ## 1- PERFORM FEATURE SELECTION APPLYING RANDOM FOREST TO THE DATA SET.
     ##    THE FUNCTION CAN LOAD DATA FROM THE WEB OR FROM CSV FILES PREVIOUSLY SAVED TO DISK.
     ##    THE OUTPUT IS GOING TO BE A LOG FILE WITH THE RESULT OF CROSS VALIDATION ON TRAIN SET
-    
-    sys.stdout = open('path to log txt file', 'w')  
-    pystocks.performFeatureSelection(maxdeltas, maxlags, fout, cut, start_test, path_datasets, savemodel, method, folds, parameters)             
-    
+
+    sys.stdout = open(path_output, 'w')
+    pystocks.performFeatureSelection(maxdeltas, maxlags, fout, cut, start_test, path_datasets, savemodel, method, folds, parameters)
+
     ##########################################################################
     # 2- CHECK BEST PARAMETERS
-    print pystocks.checkModel('path to log txt file')    
-    
+    print pystocks.checkModel(path_output)
+
     ##########################################################################
     # 3- AFTER HAVING SELECTED THE TWO PARAMETERS THAT MAXIMIZE THE ACCURACY ON CV
     #    (MAXDELTA, MAXLAGS) RUN THE MODEL ON THE WHOLE TRAIN SET AND GET A RESULT
