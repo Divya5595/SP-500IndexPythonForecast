@@ -20,12 +20,12 @@ class Strategy(object):
 
     @abstractmethod
     def generate_signals(self):
-        """An implementation is required to return the DataFrame of symbols 
+        """An implementation is required to return the DataFrame of symbols
         containing the signals to go long, short or hold (1, -1 or 0)."""
         raise NotImplementedError("Should implement generate_signals()!")
-        
+
 class Portfolio(object):
-    """An abstract base class representing a portfolio of 
+    """An abstract base class representing a portfolio of
     positions (including both instruments and cash), determined
     on the basis of a set of signals provided by a Strategy."""
 
@@ -33,7 +33,7 @@ class Portfolio(object):
 
     @abstractmethod
     def generate_positions(self):
-        """Provides the logic to determine how the portfolio 
+        """Provides the logic to determine how the portfolio
         positions are allocated on the basis of forecasting
         signals and available cash."""
         raise NotImplementedError("Should implement generate_positions()!")
@@ -45,6 +45,6 @@ class Portfolio(object):
         as a sum of holdings and cash, and the bar-period returns
         associated with this curve based on the 'positions' DataFrame.
 
-        Produces a portfolio object that can be examined by 
+        Produces a portfolio object that can be examined by
         other classes/functions."""
         raise NotImplementedError("Should implement backtest_portfolio()!")
