@@ -456,7 +456,7 @@ def performRFClass(X_train, y_train, X_test, y_test, parameters, fout, savemodel
     clf.fit(X_train, y_train)
 
     if savemodel == True:
-        fname_out = '{}.pickle'.format(fout)
+        fname_out = '{}-{}.pickle'.format(fout, datetime.now())
         with open(fname_out, 'wb') as f:
             cPickle.dump(clf, f, -1)
 

@@ -25,8 +25,8 @@ start_test = datetime.datetime(2014,4,1)
 parameters = []
 ##############################################################################
 # IN CASE OF FEATURE AND MODEL SELECTION
-maxlags = 10
-maxdeltas = 10
+maxlags = 3
+maxdeltas = 3
 folds = 10
 #grid = {'C': [0.01, 0.1], 'gamma': [0, 1]}
 ################################################################################
